@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.edwin.android.wheretogo.R
 import com.edwin.android.wheretogo.dto.EventDTO
 import com.orhanobut.logger.Logger
@@ -29,15 +31,31 @@ class EventAdapter constructor(private val context: Context) : RecyclerView.Adap
         else -> events!!.size
     }
 
-    override fun onBindViewHolder(holder: EventAdapterViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: EventAdapterViewHolder, position: Int) {
         Logger.d("Calling onBindHolder with event position: $position")
+        val event = events!![position]
+        holder.eventTitle.text = event.title
+        holder.placeName.text = event.place
     }
 
 
-    class EventAdapterViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class EventAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        var eventTitle: TextView
+        var placeName: TextView
+        var heartImage: ImageView
+        var eventPosterImage: ImageView
+        var eventDate: TextView
+        var eventTime: TextView
 
         init {
-            itemView?.setOnClickListener(this)
+            itemView.setOnClickListener(this)
+            eventTitle = itemView.findViewById(R.id.text_event_title)
+            placeName = itemView.findViewById(R.id.text_place_name)
+            heartImage = itemView.findViewById(R.id.image_heart)
+            eventPosterImage = itemView.findViewById(R.id.image_event_poster)
+            eventDate = itemView.findViewById(R.id.text_event_date)
+            eventTime = itemView.findViewById(R.id.text_event_time)
         }
 
         override fun onClick(view: View?) {
