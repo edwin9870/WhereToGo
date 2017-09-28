@@ -50,6 +50,7 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxkotlin:2.1.0'
 
     //Dagger
+    compile "com.google.dagger:dagger:$daggerVersion"
     compile "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
@@ -63,6 +64,9 @@ dependencies {
     compile group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.3.0'
     compile "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
     compile "com.squareup.retrofit2:converter-gson:2.3.0"
+
+    //Logger
+    compile 'com.orhanobut:logger:2.1.1'
 
 }
 repositories {
