@@ -1,10 +1,9 @@
 package com.edwin.android.wheretogo.di
 
-import com.edwin.android.wheretogo.event.EventActivity
 import com.edwin.android.wheretogo.event.EventActivityModule
+import com.edwin.android.wheretogo.event.EventFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-
 
 
 /**
@@ -14,6 +13,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = arrayOf(EventActivityModule::class))
-    abstract fun bindMainActivity(): EventActivity
-
+    abstract fun bindEventFragment(): EventFragment
 }

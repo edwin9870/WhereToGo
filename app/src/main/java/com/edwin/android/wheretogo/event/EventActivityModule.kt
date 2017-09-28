@@ -13,7 +13,7 @@ class EventActivityModule {
     fun provideMainViewModel(): MessageEvent = MessageEvent()
 
     @Provides
-    fun provideView(eventActivity: EventActivity): EventMVP.View = eventActivity
+    fun provideView(eventFragment: EventFragment): EventMVP.View = eventFragment
 
     @Provides
     fun providePresenter(view: EventMVP.View): EventMVP.Presenter = EventPresenter(view)
