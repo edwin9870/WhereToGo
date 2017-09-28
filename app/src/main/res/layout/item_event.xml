@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="16dp"
+             android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/text_event_title"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/text_event_title_padding_left"
+                android:paddingStart="@dimen/text_event_title_padding_left"
+                android:paddingTop="@dimen/text_event_title_padding_top"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Carlo Slim interview"
+                />
+
+            <ImageView
+                android:id="@+id/image_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_place"
+                app:layout_constraintLeft_toLeftOf="@+id/text_event_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_event_title"/>
+
+            <TextView
+                android:id="@+id/text_place_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/image_place"
+                app:layout_constraintLeft_toRightOf="@+id/image_place"
+                app:layout_constraintTop_toTopOf="@+id/image_place"
+                tools:text="Punta Cana"/>
+
+            <ImageView
+                android:id="@+id/image_heart"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/image_heart_padding_right"
+                android:paddingRight="@dimen/image_heart_padding_right"
+                android:src="@drawable/ic_heart"
+                app:layout_constraintBottom_toBottomOf="@+id/image_place"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_event_title"/>
+
+
+            <ImageView
+                android:id="@+id/image_event_poster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/image_poster_event"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_place"
+                />
+
+            <TextView
+                android:id="@+id/text_event_date"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_event_date_margin_top"
+                android:paddingLeft="@dimen/text_event_date_padding_left"
+                android:paddingStart="@dimen/text_event_date_padding_left"
+                app:layout_constraintLeft_toLeftOf="@+id/image_event_poster"
+                app:layout_constraintTop_toBottomOf="@+id/image_event_poster"
+                tools:text="November 23"
+                />
+
+            <ImageView
+                android:id="@+id/image_access_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/image_access_time_margin_right"
+                android:layout_marginRight="@dimen/image_access_time_margin_right"
+                android:src="@drawable/ic_access_time"
+                app:layout_constraintBottom_toBottomOf="@+id/text_event_date"
+                app:layout_constraintRight_toLeftOf="@+id/text_event_time"
+                app:layout_constraintTop_toTopOf="@+id/text_event_date"/>
+
+            <TextView
+                android:id="@+id/text_event_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/text_event_time_margin_left"
+                android:layout_marginRight="@dimen/text_event_time_margin_left"
+                app:layout_constraintBottom_toBottomOf="@+id/image_access_time"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_access_time"
+                tools:text="9:00 AM"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintLeft_toLeftOf="@+id/text_event_date"
+                app:layout_constraintTop_toBottomOf="@+id/text_event_date"
+                tools:text="RD$ 1,300.00"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>

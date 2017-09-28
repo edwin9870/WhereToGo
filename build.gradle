@@ -22,6 +22,7 @@ allprojects {
 
 ext {
     daggerVersion = "2.11"
+    androidSupportVersion = "26.0.0-alpha1"
 }
 
 task clean(type: Delete) {
