@@ -50,9 +50,9 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxkotlin:2.1.0'
 
     //Dagger
-    compile "com.google.dagger:dagger:$daggerVersion"
     compile "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     compile 'javax.annotation:javax.annotation-api:1.2'
 
