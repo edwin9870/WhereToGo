@@ -17,7 +17,6 @@ class EventActivity : AppCompatActivity() {
         setContentView(R.layout.activity_event)
 
         val fragmentManager = fragmentManager
-
         var eventFragment: Fragment? = fragmentManager.findFragmentById(R.id.frame_event_fragment)
 
         if(eventFragment == null) {
