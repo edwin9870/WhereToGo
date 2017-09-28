@@ -3,16 +3,19 @@ package com.edwin.android.wheretogo.event
 import android.app.Activity
 import android.app.Fragment
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.edwin.android.wheretogo.R
+import com.edwin.android.wheretogo.dto.EventDTO
 import com.orhanobut.logger.Logger
 import dagger.android.AndroidInjection
-import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_event.*
+import java.util.*
 import javax.inject.Inject
-import android.os.Build
 
 /**
  * @author Edwin Ramirez Ventura
@@ -44,7 +47,23 @@ class EventFragment : Fragment(), EventMVP.View {
                               savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_event, container, false)
 
-        return view;
+        return view
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val eventAdapter = EventAdapter(activity)
+        val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+
+        recyclerview_events.layoutManager = linearLayoutManager
+        recyclerview_events.adapter = eventAdapter
+
+        val eventList: MutableList<EventDTO> = mutableListOf()
+        eventList.add(EventDTO(1L, "Example 1", "Punta Cana", Date().time, 54545.toDouble(),"punta_cana.jpg" ))
+        eventList.add(EventDTO(2L, "Example 2", "Santo Domingo", Date().time, 1000.toDouble(),"santo_domingo.jpg" ))
+
+        eventAdapter.setEvents(eventList)
     }
 
     override fun setPresenter(presenter: EventMVP.Presenter) {
