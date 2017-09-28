@@ -14,13 +14,14 @@ import com.edwin.android.wheretogo.dto.EventDTO
 import com.orhanobut.logger.Logger
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.fragment_event.*
-import java.util.*
 import javax.inject.Inject
 
 /**
  * @author Edwin Ramirez Ventura
  */
 class EventFragment : Fragment(), EventMVP.View {
+
+    private var eventAdapter: EventAdapter? = null
 
     @Inject
     lateinit var eventPresenter: EventMVP.Presenter
@@ -44,29 +45,27 @@ class EventFragment : Fragment(), EventMVP.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.fragment_event, container, false)
-
-        return view
-    }
+                              savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_event, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val eventAdapter = EventAdapter(activity)
+        this.eventAdapter = EventAdapter(activity)
         val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
         recyclerview_events.layoutManager = linearLayoutManager
-        recyclerview_events.adapter = eventAdapter
+        recyclerview_events.adapter = this.eventAdapter
 
-        val eventList: MutableList<EventDTO> = mutableListOf()
-        eventList.add(EventDTO(1L, "Example 1", "Punta Cana", Date().time, 54545.toDouble(),"punta_cana.jpg" ))
-        eventList.add(EventDTO(2L, "Example 2", "Santo Domingo", Date().time, 1000.toDouble(),"santo_domingo.jpg" ))
-
-        eventAdapter.setEvents(eventList)
+        eventPresenter.getEvents()
     }
 
     override fun setPresenter(presenter: EventMVP.Presenter) {
         Logger.d("Setting presenter")
+    }
+
+    override fun showEvents(events: List<EventDTO>) {
+        Logger.d("Updating showEvents adapter")
+        eventAdapter?.setEvents(events.toMutableList())
     }
 }
