@@ -69,6 +69,12 @@ dependencies {
     //Logger
     compile 'com.orhanobut:logger:2.1.1'
 
+    //Testing
+    testCompile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    testCompile "com.nhaarman:mockito-kotlin:1.1.0"
+    testCompile 'org.amshove.kluent:kluent:1.14'
+
 }
 repositories {
     mavenCentral()
