@@ -1,6 +1,6 @@
 package com.edwin.android.wheretogo.event
 
-import com.edwin.android.wheretogo.dto.EventDTO
+import com.edwin.android.wheretogo.models.dto.EventDTO
 
 
 /**

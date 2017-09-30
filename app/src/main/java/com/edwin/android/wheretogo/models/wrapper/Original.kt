@@ -1,16 +1,15 @@
-package com.edwin.android.wheretogo.dto.wrapper
+package com.edwin.android.wheretogo.models.wrapper
 
 import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
 
 @Generated("net.hexar.json2pojo")
-class Original {
+data class Original (
 
     @SerializedName("height")
-    var height: Long? = null
+    val height: Long? = null,
     @SerializedName("url")
-    var url: String? = null
+    val url: String? = null,
     @SerializedName("width")
-    var width: Long? = null
-
-}
+    val width: Long? = null
+)

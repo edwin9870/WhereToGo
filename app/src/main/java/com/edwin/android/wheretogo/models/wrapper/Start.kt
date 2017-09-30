@@ -1,16 +1,15 @@
-package com.edwin.android.wheretogo.dto.wrapper
+package com.edwin.android.wheretogo.models.wrapper
 
 import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
 
 @Generated("net.hexar.json2pojo")
-class Start {
+data class Start (
 
     @SerializedName("local")
-    var local: String? = null
+    val local: String? = null,
     @SerializedName("timezone")
-    var timezone: String? = null
+    val timezone: String? = null,
     @SerializedName("utc")
-    var utc: String? = null
-
-}
+    val utc: String? = null
+)

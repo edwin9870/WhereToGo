@@ -1,20 +1,19 @@
-package com.edwin.android.wheretogo.dto.wrapper
+package com.edwin.android.wheretogo.models.wrapper
 
 import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
 
 @Generated("net.hexar.json2pojo")
-class Pagination {
+data class Pagination (
 
     @SerializedName("has_more_items")
-    var hasMoreItems: Boolean? = null
+    val hasMoreItems: Boolean? = null,
     @SerializedName("object_count")
-    var objectCount: Long? = null
+    val objectCount: Long? = null,
     @SerializedName("page_count")
-    var pageCount: Long? = null
+    val pageCount: Long? = null,
     @SerializedName("page_number")
-    var pageNumber: Long? = null
+    val pageNumber: Long? = null,
     @SerializedName("page_size")
-    var pageSize: Long? = null
-
-}
+    val pageSize: Long? = null
+)

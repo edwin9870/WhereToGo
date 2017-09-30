@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.edwin.android.wheretogo.R
-import com.edwin.android.wheretogo.dto.EventDTO
+import com.edwin.android.wheretogo.models.dto.EventDTO
 import com.orhanobut.logger.Logger
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.fragment_event.*

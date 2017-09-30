@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.edwin.android.wheretogo.R
-import com.edwin.android.wheretogo.dto.EventDTO
+import com.edwin.android.wheretogo.models.dto.EventDTO
 import com.orhanobut.logger.Logger
 
 /**

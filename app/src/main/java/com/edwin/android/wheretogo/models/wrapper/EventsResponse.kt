@@ -1,16 +1,15 @@
-package com.edwin.android.wheretogo.dto.wrapper
+package com.edwin.android.wheretogo.models.wrapper
 
 import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
 
 @Generated("net.hexar.json2pojo")
-class EventsResponse {
+data class EventsResponse (
 
     @SerializedName("events")
-    var events: List<Event>? = null
+    val events: List<Event>? = null,
     @SerializedName("location")
-    var location: Location? = null
+    val location: Location? = null,
     @SerializedName("pagination")
-    var pagination: Pagination? = null
-
-}
+    val pagination: Pagination? = null
+)

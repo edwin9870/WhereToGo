@@ -1,20 +1,19 @@
-package com.edwin.android.wheretogo.dto.wrapper
+package com.edwin.android.wheretogo.models.wrapper
 
 import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
 
 @Generated("net.hexar.json2pojo")
-class Location {
+data class Location (
 
     @SerializedName("address")
-    var address: String? = null
+    val address: String? = null,
     @SerializedName("augmented_location")
-    var augmentedLocation: AugmentedLocation? = null
+    val augmentedLocation: AugmentedLocation? = null,
     @SerializedName("latitude")
-    var latitude: String? = null
+    val latitude: String? = null,
     @SerializedName("longitude")
-    var longitude: String? = null
+    val longitude: String? = null,
     @SerializedName("within")
-    var within: String? = null
-
-}
+    val within: String? = null
+)

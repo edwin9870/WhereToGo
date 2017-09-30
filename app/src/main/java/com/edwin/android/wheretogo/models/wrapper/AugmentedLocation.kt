@@ -1,12 +1,10 @@
-package com.edwin.android.wheretogo.dto.wrapper
+package com.edwin.android.wheretogo.models.wrapper
 
 import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
 
 @Generated("net.hexar.json2pojo")
-class AugmentedLocation {
-
+data class AugmentedLocation (
     @SerializedName("country")
-    var country: String? = null
-
-}
+    val country: String? = null
+)

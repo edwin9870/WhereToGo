@@ -1,16 +1,15 @@
-package com.edwin.android.wheretogo.dto.wrapper
+package com.edwin.android.wheretogo.models.wrapper
 
 import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
 
 @Generated("net.hexar.json2pojo")
-class CropMask {
+data class CropMask (
 
     @SerializedName("height")
-    var height: Long? = null
+    val height: Long? = null,
     @SerializedName("top_left")
-    var topLeft: TopLeft? = null
+    val topLeft: TopLeft? = null,
     @SerializedName("width")
-    var width: Long? = null
-
-}
+    val width: Long? = null
+)
