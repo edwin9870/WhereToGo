@@ -47,7 +47,11 @@ class EventAdapter constructor(private val context: Context) : RecyclerView.Adap
         holder.eventTime.text = Date(event.eventDateTime).toTime()
 
         val picasso = Picasso.with(context)
-        picasso.load(event.backdropUrl).fit().centerCrop().into(holder.eventPosterImage)
+
+        when (event.backdropUrl) {
+            null -> picasso.load(R.drawable.ic_no_event).fit().centerCrop().into(holder.eventPosterImage)
+            else -> picasso.load(event.backdropUrl).fit().centerCrop().into(holder.eventPosterImage)
+        }
     }
 
     class EventAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
