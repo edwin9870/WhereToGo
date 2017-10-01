@@ -18,7 +18,7 @@ import javax.inject.Singleton
  * Created by Edwin Ramirez Ventura on 9/29/2017.
  */
 @Singleton
-class EventsRepository @Inject constructor(private val eventBriteService: EventbriteService){
+class EventRepository @Inject constructor(private val eventBriteService: EventbriteService){
 
     private lateinit var venueDisposable: Disposable
 

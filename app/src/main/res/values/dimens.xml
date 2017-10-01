@@ -9,4 +9,7 @@
     <dimen name="text_event_date_margin_top">16dp</dimen>
     <dimen name="image_access_time_margin_right">4dp</dimen>
     <dimen name="text_event_time_margin_left">8dp</dimen>
+    <dimen name="image_place_margin_top">8dp</dimen>
+    <dimen name="text_place_name_width">300dp</dimen>
+    <dimen name="text_event_title_width">300dp</dimen>
 </resources>

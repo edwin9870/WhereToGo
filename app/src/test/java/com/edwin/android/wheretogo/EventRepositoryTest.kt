@@ -2,7 +2,7 @@ package com.edwin.android.wheretogo
 
 import com.edwin.android.wheretogo.models.dto.EventDTO
 import com.edwin.android.wheretogo.networks.EventbriteService
-import com.edwin.android.wheretogo.repositories.EventsRepository
+import com.edwin.android.wheretogo.repositories.EventRepository
 import com.edwin.android.wheretogo.utils.RetrofitUtil
 import io.reactivex.FlowableSubscriber
 import org.junit.BeforeClass
@@ -17,7 +17,7 @@ import kotlin.test.fail
 class EventRepositoryTest {
 
     companion object {
-        private lateinit var eventRepository: EventsRepository
+        private lateinit var eventRepository: EventRepository
 
         private fun getEventBrideService(): EventbriteService {
             return RetrofitUtil.createRetrofitService(EventbriteService::class.java,
@@ -27,7 +27,7 @@ class EventRepositoryTest {
         @BeforeClass
         @JvmStatic
         fun init() {
-            eventRepository = EventsRepository(getEventBrideService())
+            eventRepository = EventRepository(getEventBrideService())
         }
     }
 

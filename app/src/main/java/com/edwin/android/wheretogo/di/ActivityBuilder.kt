@@ -12,6 +12,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector(modules = arrayOf(EventActivityModule::class, AppService::class))
+    @ContributesAndroidInjector(modules = arrayOf(EventActivityModule::class))
     abstract fun bindEventFragment(): EventFragment
 }
