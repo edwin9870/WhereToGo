@@ -20,7 +20,7 @@ import javax.inject.Inject
 /**
  * @author Edwin Ramirez Ventura
  */
-class EventFragment : Fragment(), EventMVP.View {
+class EventFragment : Fragment(), EventMVP.View, EventAdapter.EventListener {
 
     private var eventAdapter: EventAdapter? = null
 
@@ -54,7 +54,7 @@ class EventFragment : Fragment(), EventMVP.View {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        this.eventAdapter = EventAdapter(activity)
+        this.eventAdapter = EventAdapter(activity, this)
         val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
         recyclerview_events.layoutManager = linearLayoutManager
@@ -93,5 +93,9 @@ class EventFragment : Fragment(), EventMVP.View {
                 outState?.putLong(PARAM_EVENT_INDEX, eventPresenter.getPosition())
             }
         }
+    }
+
+    override fun onclickHeart(event: EventDTO, view: View) {
+        eventPresenter.onClickHeart(event, view)
     }
 }

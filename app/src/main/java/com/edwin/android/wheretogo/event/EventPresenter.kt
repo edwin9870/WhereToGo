@@ -1,5 +1,6 @@
 package com.edwin.android.wheretogo.event
 
+import android.view.View
 import com.edwin.android.wheretogo.models.dto.EventDTO
 import com.edwin.android.wheretogo.repositories.EventRepository
 import com.orhanobut.logger.Logger
@@ -59,5 +60,9 @@ class EventPresenter @Inject constructor(private val view: EventMVP.View,
         }
         index = position
 
+    }
+
+    override fun onClickHeart(event: EventDTO, view: View) {
+        Logger.d("Heart clicked, event: $event")
     }
 }

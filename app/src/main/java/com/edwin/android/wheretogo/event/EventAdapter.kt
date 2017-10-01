@@ -20,7 +20,7 @@ import java.util.*
 /**
  * Created by Edwin Ramirez Ventura on 9/28/2017.
  */
-class EventAdapter constructor(private val context: Context) : RecyclerView.Adapter<EventAdapter.EventAdapterViewHolder>() {
+class EventAdapter constructor(private val context: Context, private val eventListener: EventListener) : RecyclerView.Adapter<EventAdapter.EventAdapterViewHolder>() {
 
     var events: MutableList<EventDTO>? = null
 
@@ -54,7 +54,7 @@ class EventAdapter constructor(private val context: Context) : RecyclerView.Adap
         }
     }
 
-    class EventAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class EventAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         var eventTitle: TextView
         var placeName: TextView
@@ -71,10 +71,15 @@ class EventAdapter constructor(private val context: Context) : RecyclerView.Adap
             eventPosterImage = itemView.findViewById(R.id.image_event_poster)
             eventDate = itemView.findViewById(R.id.text_event_date)
             eventTime = itemView.findViewById(R.id.text_event_time)
+
+            heartImage.setOnClickListener {
+                eventListener.onclickHeart(events!![adapterPosition], it)
+            }
         }
 
         override fun onClick(view: View?) {
             Logger.d("Card View clicked")
+
         }
     }
 
@@ -95,5 +100,9 @@ class EventAdapter constructor(private val context: Context) : RecyclerView.Adap
     private fun Date.toTime() : String {
         val df = SimpleDateFormat(context.getString(R.string.time_format), Locale.US)
         return df.format(this)
+    }
+
+    interface EventListener {
+        fun onclickHeart(event: EventDTO, view: View)
     }
 }

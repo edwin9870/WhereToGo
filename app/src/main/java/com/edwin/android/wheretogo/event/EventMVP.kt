@@ -1,7 +1,7 @@
 package com.edwin.android.wheretogo.event
 
 import com.edwin.android.wheretogo.models.dto.EventDTO
-import java.util.ArrayList
+import java.util.*
 
 
 /**
@@ -18,5 +18,6 @@ interface EventMVP {
         fun getEvents()
         fun getPosition(): Long
         fun restore(position: Long, events: ArrayList<EventDTO>?)
+        fun onClickHeart(event: EventDTO, view: android.view.View)
     }
 }
