@@ -6,8 +6,6 @@ import com.orhanobut.logger.Logger
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.*
-import java.util.function.Consumer
 import javax.inject.Inject
 
 /**
@@ -15,29 +13,35 @@ import javax.inject.Inject
  */
 class EventPresenter @Inject constructor(private val view: EventMVP.View,
                                          private val eventRepository: EventRepository) : EventMVP.Presenter {
-    private lateinit var eventsFloweable: Flowable<EventDTO>
+    private var eventsFloweable: Flowable<EventDTO>? = null
     var index = 0L
+
     init {
         Logger.d("Constructor get called")
         view.setPresenter(this@EventPresenter)
     }
 
     companion object {
-        const val LIMIT = 10L
+        const val LIMIT = 5L
     }
 
     override fun getEvents() {
-        val eventList: MutableList<EventDTO> = mutableListOf()
-        eventsFloweable = eventRepository.getEvents().cache()
+        Logger.d("Executing getEvents, index: $index")
+        if (eventsFloweable == null) {
+            eventsFloweable = eventRepository.getEvents().cache()
+        }
 
-        eventsFloweable.skip(index).take(EventPresenter.LIMIT).toList()
+        eventsFloweable!!.skip(index).take(EventPresenter.LIMIT).toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe { events ->
-            Logger.d("Events to show: "+ events)
+            Logger.d("Events to show: " + events)
             view.showEvents(events)
+            if(index == 0L) {
+                index = LIMIT
+            } else {
+                index += LIMIT
+            }
+
         }
-        /*eventList.add(EventDTO("Example 1", "Punta Cana", Date().time, 54545.toDouble(),"punta_cana.jpg" ))
-        eventList.add(EventDTO("Example 2", "Santo Domingo", Date().time, 1000.toDouble(),"santo_domingo.jpg" ))
-        view.showEvents(eventList)*/
     }
 }

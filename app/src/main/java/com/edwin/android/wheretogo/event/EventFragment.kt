@@ -58,6 +58,7 @@ class EventFragment : Fragment(), EventMVP.View {
         recyclerview_events.adapter = this.eventAdapter
 
         eventPresenter.getEvents()
+        recyclerview_events.addOnScrollListener(InfiniteScrollListener({eventPresenter.getEvents()}, linearLayoutManager))
     }
 
     override fun setPresenter(presenter: EventMVP.Presenter) {

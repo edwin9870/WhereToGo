@@ -75,7 +75,10 @@ class EventAdapter constructor(private val context: Context) : RecyclerView.Adap
     }
 
     fun setEvents(events: MutableList<EventDTO>) {
-        this.events = events
+        when(this.events) {
+            null -> this.events = events
+            else -> this.events!!.addAll(events)
+        }
         Logger.d("New events added")
         notifyDataSetChanged()
     }
