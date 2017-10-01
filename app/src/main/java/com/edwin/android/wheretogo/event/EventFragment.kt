@@ -64,12 +64,9 @@ class EventFragment : Fragment(), EventMVP.View {
             null -> eventPresenter.getEvents()
             else -> {
                 val events = savedInstanceState.getParcelableArrayList<EventDTO>(PARAM_EVENT_LIST)
-                Logger.d("PreLoading previous events, size: ${events.size}")
-                showEvents(events)
-
                 val position = savedInstanceState.getLong(PARAM_EVENT_INDEX)
-                Logger.d("Position presenter: $position")
-                eventPresenter.setPosition(position)
+
+                eventPresenter.restore(position, events)
             }
         }
 

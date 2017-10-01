@@ -1,6 +1,7 @@
 package com.edwin.android.wheretogo.event
 
 import com.edwin.android.wheretogo.models.dto.EventDTO
+import java.util.ArrayList
 
 
 /**
@@ -16,6 +17,6 @@ interface EventMVP {
     interface Presenter {
         fun getEvents()
         fun getPosition(): Long
-        fun setPosition(position: Long)
+        fun restore(position: Long, events: ArrayList<EventDTO>?)
     }
 }

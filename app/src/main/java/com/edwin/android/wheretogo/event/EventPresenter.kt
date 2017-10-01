@@ -6,6 +6,7 @@ import com.orhanobut.logger.Logger
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.ArrayList
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -50,7 +51,13 @@ class EventPresenter @Inject constructor(private val view: EventMVP.View,
 
     override fun getPosition(): Long = index
 
-    override fun setPosition(position: Long) {
+    override fun restore(position: Long, events: ArrayList<EventDTO>?) {
+        Logger.d("PreLoading previous events, size: ${events?.size}")
+        Logger.d("Position presenter: $position")
+        events?.let {
+            view.showEvents(events as List<EventDTO>)
+        }
         index = position
+
     }
 }
