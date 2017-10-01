@@ -14,6 +14,7 @@ import com.edwin.android.wheretogo.models.dto.EventDTO
 import com.orhanobut.logger.Logger
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.fragment_event.*
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -28,6 +29,8 @@ class EventFragment : Fragment(), EventMVP.View {
 
     companion object {
         fun newInstance(): EventFragment = EventFragment()
+        const val PARAM_EVENT_LIST = "PARAM_EVENT_LIST"
+        const val PARAM_EVENT_INDEX = "PARAM_EVENT_INDEX"
     }
 
     override fun onAttach(activity: Activity) {
@@ -57,7 +60,19 @@ class EventFragment : Fragment(), EventMVP.View {
         recyclerview_events.layoutManager = linearLayoutManager
         recyclerview_events.adapter = this.eventAdapter
 
-        eventPresenter.getEvents()
+        when (savedInstanceState) {
+            null -> eventPresenter.getEvents()
+            else -> {
+                val events = savedInstanceState.getParcelableArrayList<EventDTO>(PARAM_EVENT_LIST)
+                Logger.d("PreLoading previous events, size: ${events.size}")
+                showEvents(events)
+
+                val position = savedInstanceState.getLong(PARAM_EVENT_INDEX)
+                Logger.d("Position presenter: $position")
+                eventPresenter.setPosition(position)
+            }
+        }
+
         recyclerview_events.addOnScrollListener(InfiniteScrollListener({eventPresenter.getEvents()}, linearLayoutManager))
     }
 
@@ -67,6 +82,19 @@ class EventFragment : Fragment(), EventMVP.View {
 
     override fun showEvents(events: List<EventDTO>) {
         Logger.d("Updating showEvents adapter")
-        eventAdapter?.setEvents(events.toMutableList())
+        eventAdapter?.addEvents(events.toMutableList())
+    }
+
+
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        eventAdapter?.events?.let {
+            if(it is ArrayList<EventDTO>) {
+                Logger.i("Saving previous loaded events to restart latter")
+                outState?.putParcelableArrayList(PARAM_EVENT_LIST, it)
+                outState?.putLong(PARAM_EVENT_INDEX, eventPresenter.getPosition())
+            }
+        }
     }
 }

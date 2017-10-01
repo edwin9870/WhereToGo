@@ -22,7 +22,7 @@ import java.util.*
  */
 class EventAdapter constructor(private val context: Context) : RecyclerView.Adapter<EventAdapter.EventAdapterViewHolder>() {
 
-    private var events: MutableList<EventDTO>? = null
+    var events: MutableList<EventDTO>? = null
 
     override fun onCreateViewHolder(viewGroup: ViewGroup?, viewType: Int): EventAdapterViewHolder {
         val viewGroupContext = viewGroup?.context
@@ -78,7 +78,7 @@ class EventAdapter constructor(private val context: Context) : RecyclerView.Adap
         }
     }
 
-    fun setEvents(events: MutableList<EventDTO>) {
+    fun addEvents(events: MutableList<EventDTO>) {
         when(this.events) {
             null -> this.events = events
             else -> this.events!!.addAll(events)

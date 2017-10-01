@@ -7,14 +7,17 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by Edwin Ramirez Ventura on 9/28/2017.
  */
+@Singleton
 class EventPresenter @Inject constructor(private val view: EventMVP.View,
                                          private val eventRepository: EventRepository) : EventMVP.Presenter {
+
     private var eventsFloweable: Flowable<EventDTO>? = null
-    var index = 0L
+    private var index = 0L
 
     init {
         Logger.d("Constructor get called")
@@ -43,5 +46,11 @@ class EventPresenter @Inject constructor(private val view: EventMVP.View,
             }
 
         }
+    }
+
+    override fun getPosition(): Long = index
+
+    override fun setPosition(position: Long) {
+        index = position
     }
 }

@@ -15,5 +15,7 @@ interface EventMVP {
 
     interface Presenter {
         fun getEvents()
+        fun getPosition(): Long
+        fun setPosition(position: Long)
     }
 }
