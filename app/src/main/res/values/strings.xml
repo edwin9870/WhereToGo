@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WhereToGo</string>
+    <string name="date_format">MMMM dd</string>
+    <string name="time_format">hh:mm:ssa</string>
 </resources>

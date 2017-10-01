@@ -12,9 +12,9 @@ import com.edwin.android.wheretogo.models.dto.EventDTO
 import com.orhanobut.logger.Logger
 import com.squareup.picasso.Picasso
 import android.util.DisplayMetrics
-
-
-
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -43,6 +43,8 @@ class EventAdapter constructor(private val context: Context) : RecyclerView.Adap
         val event = events!![position]
         holder.eventTitle.text = event.title
         holder.placeName.text = event.place
+        holder.eventDate.text = Date(event.eventDateTime).toDate()
+        holder.eventTime.text = Date(event.eventDateTime).toTime()
 
         val picasso = Picasso.with(context)
         picasso.load(event.backdropUrl).fit().centerCrop().into(holder.eventPosterImage)
@@ -76,5 +78,15 @@ class EventAdapter constructor(private val context: Context) : RecyclerView.Adap
         this.events = events
         Logger.d("New events added")
         notifyDataSetChanged()
+    }
+
+    private fun Date.toDate() : String {
+        val df = SimpleDateFormat(context.getString(R.string.date_format), Locale.US)
+        return df.format(this)
+    }
+
+    private fun Date.toTime() : String {
+        val df = SimpleDateFormat(context.getString(R.string.time_format), Locale.US)
+        return df.format(this)
     }
 }

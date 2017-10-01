@@ -10,6 +10,7 @@ import io.reactivex.Maybe
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.toObservable
 import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -44,7 +45,7 @@ class EventRepository @Inject constructor(private val eventBriteService: Eventbr
                         it.events?.toObservable()
                                 ?.subscribe {
                             venueDisposable = getVenue(it.venueId!!.toInt()).subscribe({venueSubscriber ->
-                                val startTime = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(it.start!!.local)
+                                val startTime = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US).parse(it.start!!.local)
                                 e.onNext(
                                         EventDTO(it.name?.text!!,
                                                 venueSubscriber.address!!.localizedAddressDisplay!!,
