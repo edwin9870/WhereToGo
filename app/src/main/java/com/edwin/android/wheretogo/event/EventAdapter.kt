@@ -10,6 +10,12 @@ import android.widget.TextView
 import com.edwin.android.wheretogo.R
 import com.edwin.android.wheretogo.models.dto.EventDTO
 import com.orhanobut.logger.Logger
+import com.squareup.picasso.Picasso
+import android.util.DisplayMetrics
+
+
+
+
 
 /**
  * Created by Edwin Ramirez Ventura on 9/28/2017.
@@ -32,12 +38,15 @@ class EventAdapter constructor(private val context: Context) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: EventAdapterViewHolder, position: Int) {
-        Logger.d("Calling onBindHolder with event position: $position")
+        Logger.d("event: $events[$position], position: $position")
+
         val event = events!![position]
         holder.eventTitle.text = event.title
         holder.placeName.text = event.place
-    }
 
+        val picasso = Picasso.with(context)
+        picasso.load(event.backdropUrl).fit().centerCrop().into(holder.eventPosterImage)
+    }
 
     class EventAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
