@@ -1,6 +1,7 @@
 package com.edwin.android.wheretogo.event
 
 import com.edwin.android.wheretogo.models.dto.EventDTO
+import com.edwin.android.wheretogo.utils.ViewUtil
 import java.util.*
 
 
@@ -12,6 +13,8 @@ interface EventMVP {
     interface View {
         fun setPresenter(presenter: Presenter)
         fun showEvents(events: List<EventDTO>)
+        fun setContentVisibility(visibility: ViewUtil.Visibility)
+        fun setLoaderVisibility(visibility: ViewUtil.Visibility)
     }
 
     interface Presenter {

@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.View
 import com.edwin.android.wheretogo.models.dto.EventDTO
 import com.edwin.android.wheretogo.repositories.EventRepository
+import com.edwin.android.wheretogo.utils.ViewUtil
 import com.orhanobut.logger.Logger
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,6 +34,12 @@ class EventPresenter @Inject constructor(private val view: EventMVP.View,
 
     override fun getEvents() {
         Logger.d("Executing getEvents, index: $index")
+
+        if(index == 0L) {
+            view.setContentVisibility(ViewUtil.Visibility.GONE)
+            view.setLoaderVisibility(ViewUtil.Visibility.VISIBLE)
+        }
+
         if (eventsFloweable == null) {
             eventsFloweable = eventRepository.getEvents().cache()
         }
@@ -44,6 +51,8 @@ class EventPresenter @Inject constructor(private val view: EventMVP.View,
             view.showEvents(events)
             if(index == 0L) {
                 index = LIMIT
+                view.setContentVisibility(ViewUtil.Visibility.VISIBLE)
+                view.setLoaderVisibility(ViewUtil.Visibility.GONE)
             } else {
                 index += LIMIT
             }

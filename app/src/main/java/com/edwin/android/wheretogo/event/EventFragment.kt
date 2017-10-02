@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.edwin.android.wheretogo.R
 import com.edwin.android.wheretogo.models.dto.EventDTO
+import com.edwin.android.wheretogo.utils.ViewUtil
 import com.orhanobut.logger.Logger
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.fragment_event.*
@@ -69,7 +70,6 @@ class EventFragment : Fragment(), EventMVP.View, EventAdapter.EventListener {
                 eventPresenter.restore(position, events)
             }
         }
-
         recyclerview_events.addOnScrollListener(InfiniteScrollListener({eventPresenter.getEvents()}, linearLayoutManager))
     }
 
@@ -97,5 +97,13 @@ class EventFragment : Fragment(), EventMVP.View, EventAdapter.EventListener {
 
     override fun onclickHeart(event: EventDTO, view: View) {
         eventPresenter.onClickHeart(event, view)
+    }
+
+    override fun setLoaderVisibility(visibility: ViewUtil.Visibility) {
+        progress_bar_loading_indicator.visibility = visibility.visibility
+    }
+
+    override fun setContentVisibility(visibility: ViewUtil.Visibility) {
+        recyclerview_events.visibility = visibility.visibility
     }
 }

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- fragment_event.xml-->
+    <dimen name="progress_bar_loading_indicator_height">@dimen/progress_bar_loading_indicator_width</dimen>
+    <dimen name="progress_bar_loading_indicator_width">42dp</dimen>
+
     <!-- item_event.xml-->
     <dimen name="text_event_title_padding_left">8dp</dimen>
     <dimen name="text_event_date_padding_left">8dp</dimen>

@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             xmlns:tools="http://schemas.android.com/tools"
     >
 
 
@@ -9,5 +10,13 @@
         android:id="@+id/recyclerview_events"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_loading_indicator"
+        android:layout_width="@dimen/progress_bar_loading_indicator_width"
+        android:layout_height="@dimen/progress_bar_loading_indicator_height"
+        android:layout_gravity="center"
+        tools:visible="true"
+        android:visibility="invisible" />
 
 </FrameLayout>

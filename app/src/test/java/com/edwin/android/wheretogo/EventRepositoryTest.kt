@@ -1,5 +1,6 @@
 package com.edwin.android.wheretogo
 
+import android.content.Context
 import com.edwin.android.wheretogo.models.dto.EventDTO
 import com.edwin.android.wheretogo.networks.EventbriteService
 import com.edwin.android.wheretogo.repositories.EventRepository
@@ -10,6 +11,10 @@ import org.junit.Test
 import org.reactivestreams.Subscription
 import java.util.concurrent.TimeUnit
 import kotlin.test.fail
+import org.mockito.Mockito
+import android.content.SharedPreferences
+
+
 
 /**
  * Created by Edwin Ramirez Ventura on 9/30/2017.
@@ -27,7 +32,8 @@ class EventRepositoryTest {
         @BeforeClass
         @JvmStatic
         fun init() {
-            eventRepository = EventRepository(getEventBrideService())
+            val sharedPreferences = Mockito.mock(SharedPreferences::class.java)
+            eventRepository = EventRepository(getEventBrideService(), sharedPreferences)
         }
     }
 
