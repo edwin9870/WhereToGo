@@ -3,4 +3,6 @@
     <color name="colorPrimary">#FFF059</color>
     <color name="colorPrimaryDark">#c9be21</color>
     <color name="colorAccent">#19d6ff</color>
+
+    <color name="default_heart_color">#000000</color>
 </resources>

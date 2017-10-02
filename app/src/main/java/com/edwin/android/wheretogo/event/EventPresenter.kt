@@ -1,5 +1,6 @@
 package com.edwin.android.wheretogo.event
 
+import android.graphics.Color
 import android.view.View
 import com.edwin.android.wheretogo.models.dto.EventDTO
 import com.edwin.android.wheretogo.repositories.EventRepository
@@ -64,5 +65,19 @@ class EventPresenter @Inject constructor(private val view: EventMVP.View,
 
     override fun onClickHeart(event: EventDTO, view: View) {
         Logger.d("Heart clicked, event: $event")
+        when(event.isFavorite) {
+            false -> {
+                event.isFavorite = true
+                eventRepository.addEventAsFavorite(event)
+            }
+            true -> {
+                event.isFavorite = false
+                eventRepository.removeEventAsFavorite(event)
+            }
+        }
+        Logger.d("Event change to: $event")
     }
+
+
+
 }

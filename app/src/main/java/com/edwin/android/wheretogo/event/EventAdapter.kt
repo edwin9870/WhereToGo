@@ -1,6 +1,7 @@
 package com.edwin.android.wheretogo.event
 
 import android.content.Context
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,10 @@ import java.util.*
 class EventAdapter constructor(private val context: Context, private val eventListener: EventListener) : RecyclerView.Adapter<EventAdapter.EventAdapterViewHolder>() {
 
     var events: MutableList<EventDTO>? = null
+
+    companion object {
+        const val HEART_COLOR = "#98002e"
+    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup?, viewType: Int): EventAdapterViewHolder {
         val viewGroupContext = viewGroup?.context
@@ -52,6 +57,10 @@ class EventAdapter constructor(private val context: Context, private val eventLi
             null -> picasso.load(R.drawable.ic_no_event).fit().centerCrop().into(holder.eventPosterImage)
             else -> picasso.load(event.backdropUrl).fit().centerCrop().into(holder.eventPosterImage)
         }
+
+        if(event.isFavorite) {
+            holder.heartImage.setBackgroundColor(HEART_COLOR)
+        }
     }
 
     inner class EventAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -74,6 +83,16 @@ class EventAdapter constructor(private val context: Context, private val eventLi
 
             heartImage.setOnClickListener {
                 eventListener.onclickHeart(events!![adapterPosition], it)
+                when (events!![adapterPosition].isFavorite) {
+                    true -> {
+                        (it as ImageView).alpha = 1f
+                        it.setBackgroundColor(HEART_COLOR)
+                    }
+                    false -> {
+                        (it as ImageView).alpha = 0.7f
+                        it.setColorFilter(R.color.default_heart_color)
+                    }
+                }
             }
         }
 
@@ -101,6 +120,15 @@ class EventAdapter constructor(private val context: Context, private val eventLi
         val df = SimpleDateFormat(context.getString(R.string.time_format), Locale.US)
         return df.format(this)
     }
+
+    fun View.setBackgroundColor(color: String) {
+        if(this is ImageView) {
+            this.setColorFilter(Color.parseColor(color))
+        }else {
+            this.setBackgroundColor(Color.parseColor(color))
+        }
+    }
+
 
     interface EventListener {
         fun onclickHeart(event: EventDTO, view: View)
