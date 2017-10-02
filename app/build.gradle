@@ -21,6 +21,10 @@ android {
         }
     }
 
+    buildTypes.each {
+        it.buildConfigField 'String', 'EVENTBRITE_TOKE', EVENTBRITE_TOKE
+    }
+
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
     }

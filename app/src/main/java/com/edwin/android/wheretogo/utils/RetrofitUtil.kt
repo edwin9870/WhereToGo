@@ -1,5 +1,6 @@
 package com.edwin.android.wheretogo.utils
 
+import com.edwin.android.wheretogo.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -19,7 +20,7 @@ class RetrofitUtil {
         private fun getEventBrideTokenInterceptor(): Interceptor {
             return Interceptor({ chain ->
                 var request = chain.request()
-                val url = request.url().newBuilder().addQueryParameter(TOKEN_QUERY_PARAM, "NKSQ2T2D6O5NBCLJJUH3").build()
+                val url = request.url().newBuilder().addQueryParameter(TOKEN_QUERY_PARAM, BuildConfig.EVENTBRITE_TOKE).build()
                 request = request.newBuilder().url(url).build()
                 chain.proceed(request)
             })
