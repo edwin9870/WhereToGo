@@ -7,3 +7,8 @@ Discover your next adventure in Dominican Republic
 - Explore different events to go, from a seminar to a party
 - Discover a series of events with a smoothly endless scrolling
 - Know where and when the event will happen
+
+## Configuration
+
+You must add the Eventbrite's token to the property **EVENTBRITE_TOKE** 
+ in file **gradle.properties**
